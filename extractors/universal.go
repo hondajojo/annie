@@ -3,9 +3,9 @@ package extractors
 import (
 	"fmt"
 
-	"github.com/iawia002/annie/downloader"
-	"github.com/iawia002/annie/request"
-	"github.com/iawia002/annie/utils"
+	"github.com/hondajojo/annie/downloader"
+	"github.com/hondajojo/annie/request"
+	"github.com/hondajojo/annie/utils"
 )
 
 // Universal download function

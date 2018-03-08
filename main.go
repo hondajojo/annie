@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/iawia002/annie/config"
-	"github.com/iawia002/annie/extractors"
-	"github.com/iawia002/annie/utils"
+	"github.com/hondajojo/annie/config"
+	"github.com/hondajojo/annie/extractors"
+	"github.com/hondajojo/annie/utils"
 )
 
 func init() {
@@ -17,6 +17,8 @@ func init() {
 	flag.StringVar(&config.Cookie, "c", "", "Cookie")
 	flag.BoolVar(&config.Playlist, "p", false, "Download playlist")
 	flag.StringVar(&config.Refer, "r", "", "Use specified Referrer")
+	flag.StringVar(&config.Base, "b", "./", "Use specified Referrer")
+	flag.StringVar(&config.Name, "n", "", "Use specified Referrer")
 }
 
 func main() {

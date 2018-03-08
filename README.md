@@ -21,10 +21,10 @@ The following dependencies are required and must be installed separately.
 
 > **Note**: FFmpeg does not affect the download, only affect the final file merge.
 
-To install Annie, please use `go get`, or download the binary file in the [Releases](https://github.com/iawia002/annie/releases) page, or compile yourself.
+To install Annie, please use `go get`, or download the binary file in the [Releases](https://github.com/hondajojo/annie/releases) page, or compile yourself.
 
 ```bash
-$ go get github.com/iawia002/annie
+$ go get github.com/hondajojo/annie
 ...
 $ annie [args] URL
 ```
@@ -176,7 +176,7 @@ pixivision | <https://www.pixivision.net> | | ✓ |
 ## Contributing
 Annie is an open source project and welcome contributions 😉
 
-Check out the [CONTRIBUTING](https://github.com/iawia002/annie/blob/master/CONTRIBUTING.md) guide to get started
+Check out the [CONTRIBUTING](https://github.com/hondajojo/annie/blob/master/CONTRIBUTING.md) guide to get started
 
 
 ## License

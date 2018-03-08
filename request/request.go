@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/iawia002/annie/config"
+	"github.com/hondajojo/annie/config"
 )
 
 // Request base request

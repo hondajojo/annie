@@ -11,9 +11,9 @@ import (
 
 	"github.com/cheggaaa/pb"
 
-	"github.com/iawia002/annie/config"
-	"github.com/iawia002/annie/request"
-	"github.com/iawia002/annie/utils"
+	"github.com/hondajojo/annie/config"
+	"github.com/hondajojo/annie/request"
+	"github.com/hondajojo/annie/utils"
 )
 
 // URLData data struct of single URL
@@ -60,7 +60,12 @@ func (data *VideoData) calculateTotalSize() {
 func (data VideoData) urlSave(
 	urlData URLData, refer, fileName string, bar *pb.ProgressBar,
 ) {
-	filePath := utils.FilePath(fileName, urlData.Ext, false)
+	filePath := ""
+	if config.Name != ""{
+		filePath = utils.FilePath(config.Base, config.Name, urlData.Ext, false)
+	} else{
+		filePath = utils.FilePath(config.Base, fileName, urlData.Ext, false)
+	}
 	fileSize := utils.FileSize(filePath)
 	// TODO: Live video URLs will not return the size
 	if fileSize == urlData.Size {
@@ -123,8 +128,13 @@ func (data VideoData) Download(refer string) {
 		parts := []string{}
 		for index, url := range data.URLs {
 			wg.Add(1)
-			partFileName := fmt.Sprintf("%s[%d]", data.Title, index)
-			partFilePath := utils.FilePath(partFileName, url.Ext, false)
+			partFileName := ""
+			if config.Name != "" {
+				partFileName = fmt.Sprintf("%s[%d]", config.Name, index)
+			} else {
+				partFileName = fmt.Sprintf("%s[%d]", data.Title, index)
+			}
+			partFilePath := utils.FilePath(config.Base, partFileName, url.Ext, false)
 			parts = append(parts, partFilePath)
 			go func(url URLData, refer, fileName string, bar *pb.ProgressBar) {
 				defer wg.Done()
@@ -144,8 +154,13 @@ func (data VideoData) Download(refer string) {
 		for _, part := range parts {
 			file.Write([]byte(fmt.Sprintf("file '%s'\n", part)))
 		}
-
-		filePath := utils.FilePath(data.Title, "mp4", false)
+		filePath := ""
+		if config.Name != "" {
+			filePath = utils.FilePath(config.Base, config.Name, "mp4", false)
+		} else {
+			filePath = utils.FilePath(config.Base, data.Title, "mp4", false)
+		}
+		fmt.Println(filePath)
 		fmt.Printf("Merging video parts into %s\n", filePath)
 		cmd := exec.Command(
 			"ffmpeg", "-y", "-f", "concat", "-safe", "-1",

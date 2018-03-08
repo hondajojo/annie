@@ -13,6 +13,10 @@ var (
 	Playlist bool
 	// Refer use specified Referrer
 	Refer string
+	// Refer use specified Referrer
+	Base string
+	// Refer use specified Referrer
+	Name string
 )
 
 // FakeHeaders fake http headers

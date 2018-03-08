@@ -6,8 +6,9 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"path"
 
-	"github.com/iawia002/annie/request"
+	"github.com/hondajojo/annie/request"
 )
 
 // Match1 return result of first match
@@ -45,19 +46,19 @@ func Domain(url string) string {
 
 // FileName Converts a string to a valid filename
 func FileName(name string) string {
-	// FIXME(iawia002) file name can't have /
+	// FIXME(hondajojo) file name can't have /
 	newName := strings.Replace(name, "/", " ", -1)
 	newName = strings.Replace(newName, ":", "：", -1)
 	return newName
 }
 
 // FilePath gen valid filename
-func FilePath(name, ext string, escape bool) string {
+func FilePath(base, name, ext string, escape bool) string {
 	fileName := fmt.Sprintf("%s.%s", name, ext)
 	if escape {
 		fileName = FileName(fileName)
 	}
-	return fileName
+	return path.Join(base, fileName)
 }
 
 // StringInSlice if a string is in the list
